@@ -1,1 +1,1 @@
-# cexim
+# Command EXecution Interface Module (CExIM)
