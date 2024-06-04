@@ -2,13 +2,22 @@
 #define __PROMPT_HPP__
 
 #include <string>
+#include <ncurses.h>
 
 namespace prompt {
 
-/// @brief Generates a hello message
-/// @param name name of the caller
-/// @return hello message string
-std::string hello(const std::string name);
+bool testMode = false;
+
+void setCompleterCallback();
+
+void setExecutorCallback();
+
+/// @brief Runs prompt loop on ncurses window
+/// @param win ncurses window
+/// @param prompt prompt test, e.g. "command>"
+/// @param intro introduction text printed once the function is called
+/// @return true if the loop exits normally, otherwise false
+bool runLoop(WINDOW *win, const std::string &prompt, const std::string &intro);
 
 }
 
