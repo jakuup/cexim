@@ -6,8 +6,6 @@
 
 namespace prompt {
 
-bool testMode = false;
-
 void setCompleterCallback();
 
 void setExecutorCallback();
@@ -17,7 +15,7 @@ void setExecutorCallback();
 /// @param prompt prompt test, e.g. "command>"
 /// @param intro introduction text printed once the function is called
 /// @return true if the loop exits normally, otherwise false
-bool runLoop(WINDOW *win, const std::string &prompt, const std::string &intro);
+bool runLoop(WINDOW *_window, const std::string &_prompt, const std::string &_intro);
 
 }
 

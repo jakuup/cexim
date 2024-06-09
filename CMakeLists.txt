@@ -19,5 +19,5 @@ enable_testing()
 
 add_test(
   NAME t__prompt_runLoop__null
-  COMMAND $<TARGET_FILE:t__prompt_runLoop> "null"
+  COMMAND $<TARGET_FILE:t__prompt_runLoop> "auto" "null"
 )

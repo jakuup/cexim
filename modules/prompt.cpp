@@ -7,7 +7,7 @@ namespace {
   WINDOW *window;
   std::string prompt;
   std::string intro;
-  
+
   std::string line = "";
   //int row, col;
   int lpos;              // position in line
@@ -31,14 +31,16 @@ namespace {
     lrow[0] = lrow[1] = getcury(window);
   }
 
+  bool statusVisible = false;
+
   // --------------------------------------------------------
   void printStatus(int _key = 0)
   {
-    if (not testMode) {
+    if (not statusVisible) {
       return;
     }
 
-    char *buf = new char[getmaxx(window)];
+    char *buf = new char[getmaxx(window) + 1];
 
     std::snprintf(buf, getmaxx(window),
                   "(%d,%d)[%d,%d] %d [%d]",
@@ -47,7 +49,7 @@ namespace {
 
     int row = getcury(window);
     int col = getcurx(window);
-    
+
     move(window->_maxy, 0);
     deleteln();
     wprintw(window, "%s", buf);
@@ -78,13 +80,13 @@ namespace {
             lcol[1] = getcurx(window);
             lrow[1] = getcury(window);
             move(row, col + 1);
-            refresh();
+            wrefresh(window);
           }
           break;
 
         case '\n':
           move(lrow[1], lcol[1]);
-          refresh();
+          wrefresh(window);
           addch('\n');
           if (line.size() > 0) {
             //executeCommand(line);
@@ -104,7 +106,7 @@ namespace {
               ++row;
             }
             move(row, col);
-            refresh();
+            wrefresh(window);
           }
           break;
 
@@ -121,20 +123,20 @@ namespace {
               --col;
             }
             move(row, col);
-            refresh();
+            wrefresh(window);
           }
           break;
 
         case KEY_HOME:
           lpos = 0;
           move(lrow[0], lcol[0]);
-          refresh();
+          wrefresh(window);
           break;
 
         case KEY_END:
           lpos = line.size();
           move(lrow[1], lcol[1]);
-          refresh();
+          wrefresh(window);
           break;
 
         case KEY_BACKSPACE:
