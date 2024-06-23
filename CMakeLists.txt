@@ -11,6 +11,8 @@ target_link_libraries(cexim PRIVATE prompt)
 target_include_directories(cexim PRIVATE "${PROJECT_SOURCE_DIR}/modules")
 
 # tests
+add_executable(e__proxy_class test/e__proxy_class.cpp)
+
 add_executable(t__prompt_runLoop test/t__prompt_runLoop.cpp)
 target_link_libraries(t__prompt_runLoop PRIVATE prompt pthread ncurses)
 target_include_directories(t__prompt_runLoop PRIVATE "${PROJECT_SOURCE_DIR}/modules")
