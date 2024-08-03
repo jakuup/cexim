@@ -4,6 +4,7 @@ project(cexim VERSION 0.1.0 LANGUAGES C CXX)
 # libraries
 add_library(prompt modules/prompt.cpp)
 add_library(ui modules/ui.cpp)
+add_library(vkmap modules/vkmap.cpp)
 
 # cexim binary
 add_executable(cexim main/main.cpp)
@@ -12,6 +13,10 @@ target_include_directories(cexim PRIVATE "${PROJECT_SOURCE_DIR}/modules")
 
 # tests
 add_executable(e__proxy_class test/e__proxy_class.cpp)
+
+add_executable(t__vkmap test/t__vkmap.cpp)
+target_link_libraries(t__vkmap PRIVATE vkmap)
+target_include_directories(t__vkmap PRIVATE "${PROJECT_SOURCE_DIR}/modules")
 
 add_executable(t__prompt_runLoop test/t__prompt_runLoop.cpp)
 target_link_libraries(t__prompt_runLoop PRIVATE prompt pthread ncurses)
@@ -27,4 +32,9 @@ enable_testing()
 add_test(
   NAME t__prompt_runLoop__null
   COMMAND $<TARGET_FILE:t__prompt_runLoop> "auto" "null"
+)
+
+add_test(
+  NAME t__vkmap
+  COMMAND $<TARGET_FILE:t__vkmap>
 )
