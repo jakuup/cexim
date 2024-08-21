@@ -1,7 +1,9 @@
 {
   "cmake.debugConfig": {
       "args": [
-          "term", "20", "10"
-      ]
-  }
+      ],
+      "args__t__argparse": [
+        "1", "2", "3", "[...]"
+    ],
+}
 }
